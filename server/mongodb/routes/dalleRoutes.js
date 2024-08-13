@@ -1,14 +1,12 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import OpenAI from "openai";
+import { client, Status, GenerationStyle } from "imaginesdk";
 
 dotenv.config();
 
 const router = express.Router();
 
-const openAi = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const imagine = client(process.env.OPENAI_API_KEY);
 
 router.route("/").get((req, res) => {
   res.send("HELLO FROM DALLE");
@@ -16,18 +14,23 @@ router.route("/").get((req, res) => {
 
 router.route("/").post(async (req, res) => {
   try {
-    const prompt = req.body;
-    const airesponse = await openAi.images.generate({
+    const { prompt } = req.body;
+    const response = await imagine.generations(
       prompt,
-      n: 1,
-      size: "1024x1024",
-    });
+      {
+        style: GenerationStyle.IMAGINE_V5,
+      }
+    );
 
-    const image = airesponse.data.data[0].b64_json;
-    res.status(200).json({ photo: image });
+    const image = response.data();
+    const base64Image = image.base64();
+    console.log(base64Image);
+    res.status(200).json({ photo: base64Image });
+    
+
   } catch (error) {
     console.log(error);
-    res.status(500).send(error?.response.data.error.message)
+    res.status(500).send(error);
   }
 });
 
