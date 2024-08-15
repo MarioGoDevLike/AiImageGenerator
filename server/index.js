@@ -9,7 +9,12 @@ import dalleRoutes from './mongodb/routes/dalleRoutes.js'
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin:["https://generate-an-image.vercel.app/"],
+  methods:["POST","GET"],
+  credentials:true,
+}));
+
 app.use(express.json({ limit: "50mb" }));
 
 app.get("/", async (req, res) => {
@@ -18,6 +23,7 @@ app.get("/", async (req, res) => {
 
 app.use('/api/v1/post', postRoutes);
 app.use('/imagine/api/generations', dalleRoutes);
+
 
 
 const startServer = async () => {
