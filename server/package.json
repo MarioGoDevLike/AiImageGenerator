@@ -1,6 +1,9 @@
 {
-  "name": "server",
+  "name": "your-project-name",
   "version": "1.0.0",
+  "engines": {
+    "node": "18.17.1"
+  },
   "description": "",
   "type": "module",
   "main": "index.js",
