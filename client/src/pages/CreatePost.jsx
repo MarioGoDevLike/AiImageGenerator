@@ -47,7 +47,7 @@ const CreatePost = () => {
       try {
         setGeneratingImg(true);
         const response = await fetch(
-          "http://localhost:8080/imagine/api/generations/",
+          "https://generate-an-image.vercel.app/imagine/api/generations/",
           {
             method: "POST",
             headers: {
