@@ -8,13 +8,13 @@ import dalleRoutes from "./mongodb/routes/dalleRoutes.js";
 dotenv.config();
 
 const app = express();
-const corsOptions = {
-  origin: "https://generate-ai-image.vercel.app",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-  allowedHeaders: "Content-Type,Authorization",
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "https://generate-ai-image.vercel.app",
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true,
+//   allowedHeaders: "Content-Type,Authorization",
+// };
+app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
 
