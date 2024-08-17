@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin:["https://generate-an-image.vercel.app/"],
+  origin:["https://generate-ai-image.vercel.app/"],
   methods:["POST","GET"],
   credentials:true,
 }));
