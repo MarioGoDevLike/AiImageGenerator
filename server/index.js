@@ -5,9 +5,14 @@ import connectDB from "./mongodb/connect.js";
 import postRoutes from "./mongodb/routes/postRoutes.js";
 import dalleRoutes from "./mongodb/routes/dalleRoutes.js";
 import path from 'path';
+import url from 'url';
+
 
 
 dotenv.config();
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 // const corsOptions = {
